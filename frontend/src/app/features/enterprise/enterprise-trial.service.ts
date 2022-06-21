@@ -3,7 +3,7 @@ import { I18nService } from 'core-app/core/i18n/i18n.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
 import { ToastService } from 'core-app/shared/components/toaster/toast.service';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { input } from 'reactivestates';
 
 export interface EnterpriseTrialData {
@@ -63,7 +63,7 @@ export class EnterpriseTrialService {
 
   // send POST request with form object
   // receive an enterprise trial link to access a token
-  public sendForm(form:FormGroup) {
+  public sendForm(form:UntypedFormGroup) {
     const request = { ...form.value, token_version: this.tokenVersion };
     this.http.post(`${this.baseUrlAugur}/public/v1/trials`, request)
       .toPromise()
