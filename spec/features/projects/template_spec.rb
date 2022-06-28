@@ -126,7 +126,10 @@ describe 'Project templates', type: :feature, js: true do
       expect(page).to have_content I18n.t(:label_copy_project)
       expect(page).to have_content I18n.t('js.job_status.generic_messages.in_queue')
 
-      # Email notification should be sent
+      # Perform the background job
+      perform_enqueued_jobs
+
+      # Perform the enqueued mailer job
       perform_enqueued_jobs
 
       mail = ActionMailer::Base
